@@ -1,7 +1,7 @@
 /* *******************************************************************************************
  *                                                                                           *
  * Please read the following tutorial before implementing tasks:                             *
- * https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Looping_code    *
+ * jkiuetwq,,..l'''[]]]pohgfdazi   *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration         *
  * https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/conditionals    *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else    *
@@ -21,8 +21,8 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  return number >= 0;
 }
 
 /**
@@ -38,8 +38,10 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  if (a > b && a > c) return a;
+  if (b > a && b > c) return b;
+  return c;
 }
 
 /**
@@ -61,8 +63,12 @@ function getMaxNumber(/* a, b, c */) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  return (
+    queen.x === king.x ||
+    queen.y === king.y ||
+    Math.abs(king.x - queen.x) === Math.abs(king.y - queen.y)
+  );
 }
 
 /**
@@ -83,8 +89,8 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  return (a === b || a === c || b === c) && a + b > c;
 }
 
 /**
@@ -101,8 +107,25 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const ten = Math.floor(num / 10);
+  const ones = num % 10;
+  let result = '';
+  let i = 0;
+  while (i < ten) {
+    result += 'X';
+    i += 1;
+  }
+  if (ones === 1) result += 'I';
+  if (ones === 2) result += 'II';
+  if (ones === 3) result += 'III';
+  if (ones === 4) result += 'IV';
+  if (ones === 5) result += 'V';
+  if (ones === 6) result += 'VI';
+  if (ones === 7) result += 'VII';
+  if (ones === 8) result += 'VIII';
+  if (ones === 9) result += 'IX';
+  return result;
 }
 
 /**
@@ -120,8 +143,55 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let result = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case '0':
+        result += 'zero';
+        break;
+      case '1':
+        result += 'one';
+        break;
+      case '2':
+        result += 'two';
+        break;
+      case '3':
+        result += 'three';
+        break;
+      case '4':
+        result += 'four';
+        break;
+      case '5':
+        result += 'five';
+        break;
+      case '6':
+        result += 'six';
+        break;
+      case '7':
+        result += 'seven';
+        break;
+      case '8':
+        result += 'eight';
+        break;
+      case '9':
+        result += 'nine';
+        break;
+      case ',':
+        result += 'point';
+        break;
+      case '.':
+        result += 'point';
+        break;
+      case '-':
+        result += 'minus';
+        break;
+      default:
+        break;
+    }
+    if (i < numberStr.length - 1) result += ' ';
+  }
+  return result;
 }
 
 /**
@@ -136,8 +206,18 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let start = 0;
+  let end = str.length - 1;
+  while (start < str.length / 2) {
+    if (str[start] === str[end]) {
+      start += 1;
+      end -= 1;
+    } else {
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
@@ -154,8 +234,16 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  let res;
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      res = i;
+      break;
+    }
+    res = -1;
+  }
+  return res;
 }
 
 /**
@@ -173,8 +261,12 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  const str = String(num);
+  for (let i = 0; i < str.length; i += 1) {
+    if (+str[i] === digit) return true;
+  }
+  return false;
 }
 
 /**
@@ -190,8 +282,26 @@ function isContainNumber(/* num, digit */) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  let curr = 0;
+  let first;
+  let last;
+  let ans;
+  while (curr < arr.length) {
+    for (let i = 0; i < curr; i += 1) {
+      first += arr[i];
+    }
+    for (let j = arr.length - 1; j > curr; j -= 1) {
+      last += arr[j];
+    }
+    if (first === last) {
+      ans = curr;
+    }
+    curr += 1;
+    first = 0;
+    last = 0;
+  }
+  return ans ?? -1;
 }
 
 /**
@@ -215,8 +325,44 @@ function getBalanceIndex(/* arr */) {
  *          [10, 9,  8,  7]
  *        ]
  */
-function getSpiralMatrix(/* size */) {
-  throw new Error('Not implemented');
+function getSpiralMatrix(size) {
+  const array = [];
+  for (let i = 0; i < size; i += 1) {
+    const curr = [];
+    for (let j = 0; j < size; j += 1) {
+      curr[j] = 0;
+    }
+    array[i] = curr;
+  }
+  let top = 0;
+  let bottom = size - 1;
+  let left = 0;
+  let right = size - 1;
+  let value = 1;
+  while (value <= size * size) {
+    for (let j = left; j <= right; j += 1) {
+      array[top][j] = value;
+      value += 1;
+    }
+    top += 1;
+    for (let i = top; i <= bottom; i += 1) {
+      array[i][right] = value;
+      value += 1;
+    }
+    right -= 1;
+    for (let j = right; j >= left; j -= 1) {
+      array[bottom][j] = value;
+      value += 1;
+    }
+    bottom -= 1;
+    for (let i = bottom; i >= top; i -= 1) {
+      array[i][left] = value;
+      value += 1;
+    }
+    left += 1;
+  }
+
+  return array;
 }
 
 /**
@@ -234,8 +380,25 @@ function getSpiralMatrix(/* size */) {
  *    [7, 8, 9]         [9, 6, 3]
  *  ]                 ]
  */
-function rotateMatrix(/* matrix */) {
-  throw new Error('Not implemented');
+function rotateMatrix(matrix) {
+  const result = [];
+  const answer = matrix;
+  let value = 0;
+  for (let i = 0; i < matrix.length; i += 1) {
+    result[i] = [];
+  }
+  for (let i = matrix.length - 1; i >= 0; i -= 1) {
+    for (let j = 0; j < matrix[i].length; j += 1) {
+      value = matrix[i][j];
+      result[j][matrix.length - 1 - i] = value;
+    }
+  }
+  for (let i = 0; i < answer.length; i += 1) {
+    for (let j = 0; j < answer[i].length; j += 1) {
+      answer[i][j] = result[i][j];
+    }
+  }
+  return answer;
 }
 
 /**
@@ -252,8 +415,23 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+
+function sortByAsc(arr) {
+  const array = arr;
+  for (let i = 0; i < array.length - 1; i += 1) {
+    let minIdx = i;
+    for (let j = i + 1; j < array.length; j += 1) {
+      if (array[j] < array[minIdx]) {
+        minIdx = j;
+      }
+    }
+    if (minIdx !== i) {
+      const temp = array[i];
+      array[i] = array[minIdx];
+      array[minIdx] = temp;
+    }
+  }
+  return array;
 }
 
 /**
@@ -273,8 +451,28 @@ function sortByAsc(/* arr */) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  const original = str;
+  let even = '';
+  let odd = '';
+  let newStr = '';
+  let cycle = 0;
+  let remaining = iterations;
+  let currentStr = str;
+  while (remaining > 0) {
+    even = '';
+    odd = '';
+    for (let i = 0; i < currentStr.length; i += 1) {
+      if (i % 2 === 0) even += currentStr[i];
+      else odd += currentStr[i];
+    }
+    newStr = even + odd;
+    cycle += 1;
+    if (newStr === original) remaining %= cycle;
+    currentStr = newStr;
+    remaining -= 1;
+  }
+  return currentStr;
 }
 
 /**
@@ -295,8 +493,50 @@ function shuffleChar(/* str, iterations */) {
  * 321321   => 322113
  *
  */
-function getNearestBigger(/* number */) {
-  throw new Error('Not implemented');
+function getNearestBigger(number) {
+  const str = String(number);
+  let finalRes = '';
+  let curr = '';
+  let currIdx = 0;
+  let min = Infinity;
+  let newIdx = -1;
+  for (let i = str.length - 1; i >= 0; i -= 1) {
+    if (str[i] < str[i + 1]) {
+      curr = str[i];
+      currIdx = i;
+      min = Infinity;
+      break;
+    }
+  }
+  for (let j = str.length - 1; j > currIdx; j -= 1) {
+    if (str[j] > curr && str[j] < min) {
+      min = str[j];
+      newIdx = j;
+    }
+  }
+  for (let i = 0; i < str.length; i += 1) {
+    if (i === currIdx) finalRes += str[newIdx];
+    else if (i === newIdx) finalRes += str[currIdx];
+    else finalRes += str[i];
+  }
+  let right = '';
+  let left = '';
+  for (let i = 0; i <= currIdx; i += 1) {
+    left += finalRes[i];
+  }
+  for (let i = currIdx + 1; i < finalRes.length; i += 1) {
+    right += finalRes[i];
+  }
+  const arr = [];
+  for (let i = 0; i < right.length; i += 1) arr[i] = right[i];
+  for (let i = 0; i < arr.length; i += 1) {
+    for (let j = 0; j < arr.length - 1; j += 1) {
+      if (arr[j] > arr[j + 1]) [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+    }
+  }
+  right = '';
+  for (let i = 0; i < arr.length; i += 1) right += arr[i];
+  return +(left + right);
 }
 
 module.exports = {
