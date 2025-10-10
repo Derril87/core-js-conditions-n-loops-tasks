@@ -284,7 +284,6 @@ function isContainNumber(num, digit) {
  */
 function getBalanceIndex(arr) {
   let curr = 0;
-  let ans = -1;
   while (curr < arr.length) {
     let first = 0;
     let last = 0;
@@ -295,11 +294,11 @@ function getBalanceIndex(arr) {
       last += arr[j];
     }
     if (first === last) {
-      ans = curr;
+      return curr;
     }
     curr += 1;
   }
-  return ans;
+  return -1;
 }
 
 /**
