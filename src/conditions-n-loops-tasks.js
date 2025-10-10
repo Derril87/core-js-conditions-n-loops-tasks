@@ -296,7 +296,6 @@ function getBalanceIndex(arr) {
     }
     if (first === last) {
       ans = curr;
-      break;
     }
     curr += 1;
   }
