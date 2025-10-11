@@ -283,24 +283,19 @@ function isContainNumber(num, digit) {
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
 function getBalanceIndex(arr) {
-  let curr = 0;
-  let ans = -1;
-  while (curr < arr.length) {
-    let first = 0;
-    let last = 0;
-    for (let i = 0; i < curr; i += 1) {
-      first += arr[i];
-    }
-    for (let j = curr + 1; j < arr.length; j += 1) {
-      last += arr[j];
-    }
-    if (first === last && (curr > 0 || first !== 0 || last !== 0)) {
-      ans = curr;
-      break;
-    }
-    curr += 1;
+  let total = 0;
+  for (let i = 0; i < arr.length; i += 1) {
+    total += arr[i];
   }
-  return ans;
+  let left = 0;
+  for (let i = 0; i < arr.length; i += 1) {
+    total -= arr[i];
+    if (left === total) {
+      return i;
+    }
+    left += arr[i];
+  }
+  return -1;
 }
 
 /**
