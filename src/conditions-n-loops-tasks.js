@@ -282,17 +282,14 @@ function isContainNumber(num, digit) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
+
 function getBalanceIndex(arr) {
   let total = 0;
-  for (let i = 0; i < arr.length; i += 1) {
-    total += arr[i];
-  }
+  for (let i = 0; i < arr.length; i += 1) total += arr[i];
   let left = 0;
   for (let i = 0; i < arr.length; i += 1) {
-    total -= arr[i];
-    if (left === total) {
-      return i;
-    }
+    const right = total - left - arr[i];
+    if (left === right) return i;
     left += arr[i];
   }
   return -1;
@@ -411,21 +408,34 @@ function rotateMatrix(matrix) {
  */
 
 function sortByAsc(arr) {
-  const array = arr;
-  for (let i = 0; i < array.length - 1; i += 1) {
-    let minIdx = i;
-    for (let j = i + 1; j < array.length; j += 1) {
-      if (array[j] < array[minIdx]) {
-        minIdx = j;
+  const a = arr;
+  function partition(left, right) {
+    const pivot = a[right];
+    let i = left - 1;
+    for (let j = left; j < right; j += 1) {
+      if (a[j] < pivot) {
+        i += 1;
+        const temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
       }
     }
-    if (minIdx !== i) {
-      const temp = array[i];
-      array[i] = array[minIdx];
-      array[minIdx] = temp;
+    const temp = a[i + 1];
+    a[i + 1] = a[right];
+    a[right] = temp;
+    return i + 1;
+  }
+
+  function quickSort(left, right) {
+    if (left < right) {
+      const pivotIndex = partition(left, right);
+      quickSort(left, pivotIndex - 1);
+      quickSort(pivotIndex + 1, right);
     }
   }
-  return array;
+
+  quickSort(0, a.length - 1);
+  return a;
 }
 
 /**
